@@ -1,2 +1,2 @@
 # For_the_Farmers_YHACK
-abc
+This project can predict rainfall in any given city or region. It is specifically designed to help farmers plan their next month using the rainfall data. Llama AI is used to determine the usual rainfall in the current month, and it is compared with the forecast data. Farmers are given suggestions on how they can protect their crops. Special consideration is given to the most grown crop in the region.
