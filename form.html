@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Input</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #e0f7fa; /* Light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff; /* White background for form */
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out; /* Fade in effect */
+        }
+
+        h1 {
+            color: #00796b; /* Dark teal */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #00796b; /* Focus color */
+            outline: none; /* Remove default outline */
+        }
+
+        input[type="submit"] {
+            padding: 20px;
+            background-color: #00796b; /* Button color */
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00695c; /* Darker button color on hover */
+            transform: scale(1.05);
+        }
+
+        /* Loading animation styles */
+        .loading {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .fading-circle-loader {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+        }
+
+        .fading-circle-loader div {
+            width: 20px;
+            height: 20px;
+            background-color: #00796b; /* Circle color */
+            border-radius: 50%;
+            animation: fade 1.2s infinite ease-in-out;
+        }
+
+        .fading-circle-loader div:nth-child(2) {
+            animation-delay: -0.4s;
+        }
+
+        .fading-circle-loader div:nth-child(3) {
+            animation-delay: -0.8s;
+        }
+
+        @keyframes fade {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Enter Location for Weather Prediction</h1>
+        <form id="weatherForm" action="/submit" method="POST">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location" required>
+            <input type="hidden" name="month" value="{{ current_month }}">
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="loading" id="loadingMessage">
+            <div class="fading-circle-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            Loading, please wait...
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('weatherForm').addEventListener('submit', function () {
+            document.getElementById('loadingMessage').style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>

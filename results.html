@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Results</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            color: #333;
+            animation: fadeIn 1s ease-in-out; /* Page fade-in animation */
+        }
+
+        h1 {
+            color: #00796b;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        p {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Hover transition */
+        }
+
+        p:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #00796b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Hover transition */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            background-color: #00695c;
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        /* Loading spinner */
+        #loading {
+            display: none; /* Hidden by default */
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e0f7fa;
+            border-radius: 50%;
+            border-top: 5px solid #00796b;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Results for {{ result.location }} in {{ result.month }}</h1>
+    <p>Month: {{ result.month }}</p>
+    <p>Actual Rainfall: {{ result.actual_rain }} mm</p>
+    <p>Usual Rainfall: {{ result.usual_rain }} mm</p>
+    <p>Most Grown Crop: {{ result.crop }}</p>
+    <p>Suggestions: <br>{{ result.suggestion }}</p>
+
+    <div id="loading"></div> <!-- Loading spinner -->
+
+    <a href="/">Back</a>
+</body>
+</html>
