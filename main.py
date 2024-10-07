@@ -11,24 +11,6 @@ RAIN_API = os.getenv("RAIN_API")
 
 app = Flask(__name__)
 
-def expert_tip(location_p, month_p, usual, actual, crop_p):
-    client = Groq(api_key=GROQ_API)
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-                "role": "user",
-                "content": f"This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
-                           f"whereas the usual rainfall is {usual}mm. Give 3 suggestion points (each on a new line) keeping in mind the "
-                           f"region and climate for the farmers. Talk specifically about {crop_p} which is the most grown in this month"
-                           f"crop in region in the first point. Just 3 total points nothing else. "
-                           f"Do not write anything like Here are three suggestion points for. This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
-                           f"whereas the usual rainfall is {usual}mm.",
-            }
-        ],
-        model="llama3-8b-8192",
-    )
-    expert_points = chat_completion.choices[0].message.content
-    return expert_points
 
 def get_response(location_name_p, month_p):
     client = Groq(api_key=GROQ_API)
@@ -104,6 +86,25 @@ def get_rain(this_coordinates):
     total_rain = total_rain * 10
 
     return round(total_rain, 2)
+
+def expert_tip(location_p, month_p, usual, actual, crop_p):
+    client = Groq(api_key=GROQ_API)
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": f"This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
+                           f"whereas the usual rainfall is {usual}mm. Give 3 suggestion points (each on a new line) keeping in mind the "
+                           f"region and climate for the farmers. Talk specifically about {crop_p} which is the most grown in this month"
+                           f"crop in region in the first point. Just 3 total points nothing else. "
+                           f"Do not write anything like Here are three suggestion points for. This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
+                           f"whereas the usual rainfall is {usual}mm.",
+            }
+        ],
+        model="llama3-8b-8192",
+    )
+    expert_points = chat_completion.choices[0].message.content
+    return expert_points
 
 @app.route('/')
 def home():
