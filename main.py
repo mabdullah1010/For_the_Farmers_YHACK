@@ -95,7 +95,7 @@ def expert_tip(location_p, month_p, usual, actual, crop_p):
                 "role": "user",
                 "content": f"This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
                            f"whereas the usual rainfall is {usual}mm. Give 3 suggestion points (each on a new line) keeping in mind the "
-                           f"region and climate for the farmers. Talk specifically about {crop_p} which is the most grown in this month"
+                           f"region, the soil type in region and climate for the farmers. Talk specifically about {crop_p} which is the most grown in this month"
                            f"crop in region in the first point. Just 3 total points nothing else. "
                            f"Do not write anything like Here are three suggestion points for. This year, in {location_p} during {month_p}, the predicted rainfall is {actual}mm "
                            f"whereas the usual rainfall is {usual}mm.",
