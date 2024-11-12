@@ -4,7 +4,6 @@ import datetime
 from flask import Flask, render_template, request
 import os
 
-
 GROQ_API = os.getenv("GROQ_API")
 GET_COORDINATES_API = os.getenv("GET_COORDINATES_API")
 RAIN_API = os.getenv("RAIN_API")
