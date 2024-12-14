@@ -2,7 +2,6 @@ import requests
 from groq import Groq
 import datetime
 from flask import Flask, render_template, request
-
 import os
 
 GROQ_API = os.getenv("GROQ_API")
